@@ -4,6 +4,10 @@ Vou assumir que você já tem o Node.js e o NestJS CLI instalados. Se não, voc�
 
 Vamos criar uma aplicação CRUD para gerenciar um recurso chamado "Produto".
 
+Banco de dados:
+1 - Criar banco de dados:
+https://www.mongodb.com/pt-br/cloud/atlas/register
+
 ### 1. Configuração Inicial
 
 1. **Crie um novo projeto NestJS:**
