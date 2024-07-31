@@ -1,12 +1,9 @@
 Roteiro CRUD (Create, Read, Update, Delete) usando NestJS.
-O NestJS é um framework para construir aplicações Node.js eficientes e escaláveis.
-Vou assumir que você já tem o Node.js e o NestJS CLI instalados. Se não, você pode instalar o NestJS CLI com `npm install -g @nestjs/cli`.
 
-Vamos criar uma aplicação CRUD para gerenciar um recurso chamado "Produto".
+Instale o NestJS CLI com `npm install -g @nestjs/cli`.
 
-Banco de dados:
-1 - Criar banco de dados:
-https://www.mongodb.com/pt-br/cloud/atlas/register
+Vamos criar uma aplicação CRUD para gerenciar um recurso chamado "Banco". Nele teremos um módulo de contas para criação e edição, e um módulo cliente.
+
 
 ### 1. Configuração Inicial
 
@@ -16,134 +13,89 @@ https://www.mongodb.com/pt-br/cloud/atlas/register
    nest new <nome-do-projeto>
    ```
 
-2. **Instale as dependências necessárias:**
 
-   Para este exemplo, vamos usar o TypeORM para interagir com um banco de dados SQL. Você pode usar o PostgreSQL, MySQL, SQLite, etc.
+### 2. Criação do Módulo de Conta
 
-   ```bash
-   cd <nome-do-projeto>
-   ```
-
-
-### 2. Criação do Módulo de Produtos
-
-1. **Crie um módulo, controlador e serviço para produtos:**
+1. **Crie um módulo, controlador e serviço para Conta:**
 
    ```bash
-   nest generate module produtos
-   nest generate controller produtos
-   nest generate service produtos
+   nest generate module contas
+   nest generate controller contas
+   nest generate service contas
    ```
 
-2. **Defina a entidade `Produto` (`produtos/produto.entity.ts`):**
-
-   ```typescript
-   import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
-   @Entity()
-   export class Produto {
-     @PrimaryGeneratedColumn()
-     id: number;
-
-     @Column()
-     nome: string;
-
-     @Column()
-     preco: number;
-   }
-   ```
-
-3. **Configure o serviço de produtos (`produtos/produtos.service.ts`):**
+3. **Configure o serviço de contas (`contas/contas.service.ts`):**
 
    ```typescript
    import { Injectable } from '@nestjs/common';
-   import { InjectRepository } from '@nestjs/typeorm';
-   import { Repository } from 'typeorm';
-   import { Produto } from './produto.entity';
 
    @Injectable()
-   export class ProdutosService {
+   export class ContasService {
      constructor(
-       @InjectRepository(Produto)
-       private readonly produtoRepository: Repository<Produto>,
      ) {}
 
-     create(produto: Partial<Produto>): Promise<Produto> {
-       return this.produtoRepository.save(produto);
-     }
+     create(conta: any)  {}
 
-     findAll(): Promise<Produto[]> {
-       return this.produtoRepository.find();
-     }
+     findAll()  {}
 
-     findOne(id: number): Promise<Produto> {
-       return this.produtoRepository.findOneBy({ id });
-     }
+     findOne(id: number)  {}
 
-     async update(id: number, produto: Partial<Produto>): Promise<Produto> {
-       await this.produtoRepository.update(id, produto);
-       return this.produtoRepository.findOneBy({ id });
-     }
+     async update(id: number)  {}
 
-     async remove(id: number): Promise<void> {
-       await this.produtoRepository.delete(id);
-     }
+     async remove(id: number)  {}
    }
    ```
 
-4. **Configure o controlador de produtos (`produtos/produtos.controller.ts`):**
+4. **Configure o controlador de contas (`contas/contas.controller.ts`):**
 
    ```typescript
    import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
-   import { ProdutosService } from './produtos.service';
-   import { Produto } from './produto.entity';
+   import { ContasService } from './contas.service';
 
-   @Controller('produtos')
-   export class ProdutosController {
-     constructor(private readonly produtosService: ProdutosService) {}
+   @Controller('contas')
+   export class ContasController {
+     constructor(private readonly contasService: ContasService) {}
 
      @Post()
-     create(@Body() produto: Partial<Produto>) {
-       return this.produtosService.create(produto);
+     create(@Body() conta: any) {
+       return this.contasService.create(conta);
      }
 
      @Get()
      findAll() {
-       return this.produtosService.findAll();
+       return this.contasService.findAll();
      }
 
      @Get(':id')
      findOne(@Param('id') id: number) {
-       return this.produtosService.findOne(id);
+       return this.contasService.findOne(id);
      }
 
      @Put(':id')
-     update(@Param('id') id: number, @Body() produto: Partial<Produto>) {
-       return this.produtosService.update(id, produto);
+     update(@Param('id') id: number, @Body() conta: any) {
+       return this.contasService.update(id, conta);
      }
 
      @Delete(':id')
      remove(@Param('id') id: number) {
-       return this.produtosService.remove(id);
+       return this.contasService.remove(id);
      }
    }
    ```
 
-5. **Atualize o módulo de produtos (`produtos/produtos.module.ts`):**
+5. **Atualize o módulo de contas (`contas/contas.module.ts`):**
 
    ```typescript
    import { Module } from '@nestjs/common';
-   import { TypeOrmModule } from '@nestjs/typeorm';
-   import { ProdutosController } from './produtos.controller';
-   import { ProdutosService } from './produtos.service';
-   import { Produto } from './produto.entity';
+   import { ContasController } from './contas.controller';
+   import { ContasService } from './contas.service';
 
    @Module({
-     imports: [TypeOrmModule.forFeature([Produto])],
-     controllers: [ProdutosController],
-     providers: [ProdutosService],
+     imports: [],
+     controllers: [ContasController],
+     providers: [ContasService],
    })
-   export class ProdutosModule {}
+   export class ContasModule {}
    ```
 
 ### 4. Testando o CRUD
@@ -158,10 +110,19 @@ https://www.mongodb.com/pt-br/cloud/atlas/register
 
    Use ferramentas como Postman ou cURL para testar os endpoints:
 
-   - **POST** `/produtos` para criar um novo produto.
-   - **GET** `/produtos` para listar todos os produtos.
-   - **GET** `/produtos/:id` para buscar um produto pelo ID.
-   - **PUT** `/produtos/:id` para atualizar um produto pelo ID.
-   - **DELETE** `/produtos/:id` para remover um produto pelo ID.
+   - **POST** `/contas` para criar uma nova conta.
+   - **GET** `/contas` para listar todas as contas.
+   - **GET** `/contas/:id` para buscar um conta pelo ID.
+   - **PUT** `/contas/:id` para atualizar um conta pelo ID.
+   - **DELETE** `/contas/:id` para remover um conta pelo ID.
 
-E isso é o básico de um CRUD com NestJS! Dependendo das suas necessidades, você pode adicionar validação, autenticação, e outras funcionalidades. Se precisar de mais alguma coisa ou tiver dúvidas, só avisar!
+### 5. Criando o módulo clientes:
+
+1. **Crie um módulo, controlador e serviço para Cliente:**
+
+   ```bash
+   nest generate module clientes
+   nest generate controller clientes
+   nest generate service clientes
+   ```
+2. **Crie os métodos (Get, Post, Put, Delete) para o Controller Cliente**
