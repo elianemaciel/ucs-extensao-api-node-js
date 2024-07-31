@@ -40,7 +40,7 @@ Vamos criar uma aplicação CRUD para gerenciar um recurso chamado "Banco". Nele
 
      findOne(id: number)  {}
 
-     async update(id: number)  {}
+     async update(id: number, conta: any)  {}
 
      async remove(id: number)  {}
    }
