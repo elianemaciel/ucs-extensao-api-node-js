@@ -36,6 +36,10 @@ export class ContasModule {}
 
 5. **Construindo o Schema:**
   Vamos criar uma pasta chamada `schemas`, e crie um arquivo `contas.schema.ts`.
+
+   ```bash
+      npm install --save class-validator
+   ```
    ```typescript
     import { Prop, Schema, SchemaFactory } from 'mongoose';
 
@@ -60,7 +64,7 @@ export class ContasModule {}
     ...
     ```
    
-6. **Validação dos dados de entrada:**
+7. **Validação dos dados de entrada:**
   Crie um pasta chamada `dto` dentro dela vamos incluir o arquivo `create-conta.dto.ts`.
   ```typescript
   import { IsEmail, IsNotEmpty } from 'class-validator';
