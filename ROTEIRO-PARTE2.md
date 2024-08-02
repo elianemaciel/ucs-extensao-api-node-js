@@ -159,14 +159,14 @@ export class ConstasService {
 8. **Atualizando o controller**
    No controller onde temos as entradas para o POST e PUT vamos tipar com os DTO criados:
    
-   ```typescript
-  @Post()
-  create(@Body() conta: CreateContaDto) {
-    return this.contasService.create(conta);
-  }
-  @Put(':id')
-  update(@Param('id') id: number, @Body() conta: UpdateContaDto) {
-    return this.contasService.update(id, conta);
-  }
-   ```
+```typescript
+   @Post()
+   create(@Body() conta: CreateContaDto) {
+   return this.contasService.create(conta);
+   }
+   @Put(':id')
+   update(@Param('id') id: number, @Body() conta: UpdateContaDto) {
+   return this.contasService.update(id, conta);
+   }
+```
    
