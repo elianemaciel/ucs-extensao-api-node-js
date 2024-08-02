@@ -97,7 +97,8 @@ Substitua a URL com a url de conexão adquirida no MongoDB Atlas.
   ```
 
 Crie um arquivo para validar o update:
-``typescript
+
+```typescript
    import { IsOptional } from 'class-validator';
    
    export class UpdateContaDto {
@@ -115,7 +116,7 @@ Crie um arquivo para validar o update:
    }
 ```
 
-5. **Configurando o Model/Service**
+7. **Configurando o Model/Service**
 
 O arquivo do serviço é responsável pela interação e comunicação com o banco de dados MongoDB. Ele é usado para criar, recuperar, atualizar e excluir registros.
 ```typescript
@@ -155,8 +156,9 @@ export class ConstasService {
 }
 ```
 
-7. **Atualizando o controller**
+8. **Atualizando o controller**
    No controller onde temos as entradas para o POST e PUT vamos tipar com os DTO criados:
+   
    ```typescript
   @Post()
   create(@Body() conta: CreateContaDto) {
@@ -166,6 +168,5 @@ export class ConstasService {
   update(@Param('id') id: number, @Body() conta: UpdateContaDto) {
     return this.contasService.update(id, conta);
   }
-   
    ```
    
