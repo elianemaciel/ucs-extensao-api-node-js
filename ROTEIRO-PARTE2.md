@@ -145,12 +145,12 @@ export class ConstasService {
   }
 
   async update(id: number, conta: UpdateContaDto)  {
-    const conta = await this.contaModel.findOneAndUpdate(id, conta).exec();
+    const conta = await this.contaModel.findOneAndUpdate({ numero: numero }, conta).exec();
     return conta
   }
 
   async remove(id: number)  {
-    const task = await this.contaModel.findByIdAndDelete(id).exec();
+    const conta = await this.contaModel.findOneAndDelete({ numero: numero }).exec();
     return conta
   }
 }
