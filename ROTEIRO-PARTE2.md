@@ -60,6 +60,7 @@ Substitua a URL com a url de conexão adquirida no MongoDB Atlas.
     imports : [MongooseModule.forFeature([{name : Contas.name, schema: ContasSchema}])],
     ...
     ```
+    
 5. **Adicionar em imports no modulo contas**:
 
 ```typescript
