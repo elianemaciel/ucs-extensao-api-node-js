@@ -1,4 +1,6 @@
-## Roteiro Parte 1 - Validação de dados nos endpoints
+# Roteiro 2
+
+## Parte 1 - Validação de dados nos endpoints
 
 1. Instalar o Zod e o pacote de integração com NestJS
 
@@ -72,7 +74,7 @@ export class ContaController {
 ```
 
 
-## Roteiro parte 2 - Banco de dados:
+## Parte 2 - Banco de dados:
 
 1. Criar banco de dados:
 [mongodb Atlas](https://www.mongodb.com/pt-br/cloud/atlas/register)
