@@ -17,8 +17,8 @@ npm install zod nestjs/zod
 src/
  ├── accounts/
  │   ├── dto/
- │   │   ├── create-conta.dto.ts
- │   │   ├── update-conta.dto.ts
+ │   │   ├── create-account.dto.ts
+ │   │   ├── update-account.dto.ts
 ```
 
 2.1.  📌 Criando o create-conta.dto.ts
@@ -27,14 +27,14 @@ src/
 import { z } from 'zod';
 import { createZodDto } from 'nestjs-zod';
 
-export const CreateContaSchema = z.object({
-  numero: z.number().int().positive(),
-  titular: z.string().min(1, 'O titular é obrigatório'),
-  saldo: z.number().nonnegative(),
-  limite: z.number().nonnegative(),
+export const CreateAccountSchema = z.object({
+  number: z.number().int().positive(),
+  holder: z.string().min(1, 'O titular é obrigatório'),
+  balance: z.number().nonnegative(),
+  limit: z.number().nonnegative(),
 });
 
-export class CreateContaZodDto extends createZodDto(CreateContaSchema) {}
+export class CreateAccountDto extends createZodDto(CreateAccountSchema) {}
 ```
 2.2. 📌 Criando o update-conta.dto.ts
 Usamos Zod para permitir que os campos sejam opcionais:
@@ -43,31 +43,31 @@ Usamos Zod para permitir que os campos sejam opcionais:
 import { z } from 'zod';
 import { createZodDto } from 'nestjs-zod';
 
-export const UpdateContaSchema = z.object({
-  numero: z.number().int().positive().optional(),
-  titular: z.string().min(1).optional(),
-  saldo: z.number().nonnegative().optional(),
-  limite: z.number().nonnegative().optional(),
+export const UpdateAccountSchema = z.object({
+  number: z.number().int().positive().optional(),
+  holder: z.string().min(1).optional(),
+  balance: z.number().nonnegative().optional(),
+  limit: z.number().nonnegative().optional(),
 });
 
-export class UpdateContaZodDto extends createZodDto(UpdateContaSchema) {}
+export class UpdateAccountDto extends createZodDto(UpdateAccountSchema) {}
 ```
 3.  Utilizar os DTOs no Controller
 Agora aplicamos a validação no Controller:
 ```typescript
 import { Body, Controller, Post, Patch } from '@nestjs/common';
-import { CreateContaDto } from './dto/create-conta.dto';
-import { UpdateContaDto } from './dto/update-conta.dto';
+import { CreateAccountDto } from './dto/create-conta.dto';
+import { UpdateAccountDto } from './dto/update-conta.dto';
 
 @Controller('contas')
 export class ContaController {
   @Post()
-  criarConta(@Body() createContaDto: CreateContaDto) {
+  criarConta(@Body() createContaDto: CreateAccountDto) {
     return { message: 'Conta criada com sucesso!', data: createContaDto };
   }
 
   @Patch()
-  atualizarConta(@Body() updateContaDto: UpdateContaDto) {
+  atualizarConta(@Body() updateContaDto: UpdateAccountDto) {
     return { message: 'Conta atualizada com sucesso!', data: updateContaDto };
   }
 }
