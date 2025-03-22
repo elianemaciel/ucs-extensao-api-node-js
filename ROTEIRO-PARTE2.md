@@ -25,7 +25,7 @@ src/
 
 ```typescript
 import { z } from 'zod';
-import { createZodDto } from '@nestjs/zod';
+import { createZodDto } from 'nestjs-zod';
 
 export const CreateContaSchema = z.object({
   numero: z.number().int().positive(),
@@ -41,7 +41,7 @@ Usamos Zod para permitir que os campos sejam opcionais:
 
 ```typescript
 import { z } from 'zod';
-import { createZodDto } from '@nestjs/zod';
+import { createZodDto } from 'nestjs-zod';
 
 export const UpdateContaSchema = z.object({
   numero: z.number().int().positive().optional(),
