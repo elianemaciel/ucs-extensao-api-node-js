@@ -126,13 +126,6 @@ Substitua a URL com a url de conexão adquirida no MongoDB Atlas.
     }
     export const AccountsSchema = SchemaFactory.createForClass(Accounts)
    ```
-   Import esse schema no `conta.module`:
-    ```typescript
-    import { Accounts, AccountsSchema } from './schemas/constas.schema'
-    ... 
-    imports : [MongooseModule.forFeature([{name : Accounts.name, schema: AccountsSchema}])],
-    ...
-    ```
     
 5. **Adicionar em imports no modulo contas**:
 
