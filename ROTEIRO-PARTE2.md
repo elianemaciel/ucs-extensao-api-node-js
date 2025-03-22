@@ -17,6 +17,7 @@ src/
  │   ├── dto/
  │   │   ├── create-conta.dto.ts
  │   │   ├── update-conta.dto.ts
+```
 
 2.1.  📌 Criando o create-conta.dto.ts
 
