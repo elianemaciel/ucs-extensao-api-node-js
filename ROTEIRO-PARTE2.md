@@ -113,24 +113,24 @@ Substitua a URL com a url de conexão adquirida no MongoDB Atlas.
    ```typescript
     import { Prop, Schema, SchemaFactory } from 'mongoose';
 
-    @Schema({ collection: 'contas' })
-    export class Contas {
+    @Schema({ collection: 'accounts' })
+    export class Accounts {
       @Prop({ required: true })
-      numero: number;
+      number: number;
       @Prop({ required: true })
-      titular: string;
+      holder: string;
       @Prop({ required: true })
-      saldo: number;
+      balance: number;
       @Prop({ required: true })
-      limite: number;
+      limit: number;
     }
-    export const ContasSchema = SchemaFactory.createForClass(Contas)
+    export const AccountsSchema = SchemaFactory.createForClass(Accounts)
    ```
    Import esse schema no `conta.module`:
     ```typescript
-    import { Contas, ContasSchema } from './schemas/constas.schema'
+    import { Accounts, AccountsSchema } from './schemas/constas.schema'
     ... 
-    imports : [MongooseModule.forFeature([{name : Contas.name, schema: ContasSchema}])],
+    imports : [MongooseModule.forFeature([{name : Accounts.name, schema: AccountsSchema}])],
     ...
     ```
     
@@ -138,10 +138,10 @@ Substitua a URL com a url de conexão adquirida no MongoDB Atlas.
 
 ```typescript
    import { MongooseModule } from '@nestjs/mongoose';
-   import { Contas, ContasSchema } from './schemas/contas.schema';
+   import { Contas, AccountsSchema } from './schemas/contas.schema';
    ...
    @Module({
-     imports: [MongooseModule.forFeature([{ name: Contas.name, schema: ContasSchema }])],
+     imports: [MongooseModule.forFeature([{ name: Contas.name, schema: AccountsSchema }])],
      controllers: [ContasController],
      providers: [ContasService],
      exports: [ContasModule]
