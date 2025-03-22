@@ -1,3 +1,76 @@
+## Roteiro Parte 1 - Validação de dados nos endpoints
+
+1. Instalar o Zod e o pacote de integração com NestJS
+
+Execute o seguinte comando para instalar as dependências necessárias:
+
+```bash
+npm install zod @nestjs/zod
+```
+
+2. Criar a Pasta dto/, dentro do módulo, e Adicionar os Schemas com Zod
+📂 Estrutura do diretório:
+
+```sql
+src/
+ ├── accounts/
+ │   ├── dto/
+ │   │   ├── create-conta.dto.ts
+ │   │   ├── update-conta.dto.ts
+
+2.1.  📌 Criando o create-conta.dto.ts
+
+```typescript
+import { z } from 'zod';
+import { createZodDto } from '@nestjs/zod';
+
+export const CreateContaSchema = z.object({
+  numero: z.number().int().positive(),
+  titular: z.string().min(1, 'O titular é obrigatório'),
+  saldo: z.number().nonnegative(),
+  limite: z.number().nonnegative(),
+});
+
+export class CreateContaDto extends createZodDto(CreateContaSchema) {}
+```
+2.2. 📌 Criando o update-conta.dto.ts
+Usamos Zod para permitir que os campos sejam opcionais:
+
+```typescript
+import { z } from 'zod';
+import { createZodDto } from '@nestjs/zod';
+
+export const UpdateContaSchema = z.object({
+  numero: z.number().int().positive().optional(),
+  titular: z.string().min(1).optional(),
+  saldo: z.number().nonnegative().optional(),
+  limite: z.number().nonnegative().optional(),
+});
+
+export class UpdateContaDto extends createZodDto(UpdateContaSchema) {}
+```
+3.  Utilizar os DTOs no Controller
+Agora aplicamos a validação no Controller:
+```typescript
+import { Body, Controller, Post, Patch } from '@nestjs/common';
+import { CreateContaDto } from './dto/create-conta.dto';
+import { UpdateContaDto } from './dto/update-conta.dto';
+
+@Controller('contas')
+export class ContaController {
+  @Post()
+  criarConta(@Body() createContaDto: CreateContaDto) {
+    return { message: 'Conta criada com sucesso!', data: createContaDto };
+  }
+
+  @Patch()
+  atualizarConta(@Body() updateContaDto: UpdateContaDto) {
+    return { message: 'Conta atualizada com sucesso!', data: updateContaDto };
+  }
+}
+```
+
+
 ## Roteiro parte 2 - Banco de dados:
 
 1. Criar banco de dados:
@@ -23,7 +96,7 @@ Substitua a URL com a url de conexão adquirida no MongoDB Atlas.
    ...
    @Module({
      imports: [
-       MongooseModule.forRoot('mongodb://localhost/')
+       MongooseModule.forRoot('mongodb://localhost/') // URL do seu banco de dados
      ],
      controllers: [AppController],
      providers: [AppService],
@@ -34,9 +107,6 @@ Substitua a URL com a url de conexão adquirida no MongoDB Atlas.
 4. **Construindo o Schema:**
   Vamos criar uma pasta chamada `schemas`, e crie um arquivo `contas.schema.ts`.
 
-   ```bash
-      npm install --save class-validator
-   ```
    ```typescript
     import { Prop, Schema, SchemaFactory } from 'mongoose';
 
@@ -76,47 +146,8 @@ Substitua a URL com a url de conexão adquirida no MongoDB Atlas.
    export class ContasModule {}
    ```
 
-6. **Validação dos dados de entrada:**
-  Crie um pasta chamada `dto` dentro dela vamos incluir o arquivo `create-conta.dto.ts`.
-  ```
-      npm install --save class-validator
-  ```
-  ```typescript
-  import { IsNotEmpty } from 'class-validator';
 
-  export class CreateContaDto {
-    @IsNotEmpty()
-    numero: number;
-    @IsNotEmpty()
-    titular: string;
-    @IsNotEmpty()
-    saldo: number;
-    @IsNotEmpty()
-    limite: number;
-  }
-  ```
-
-Crie um arquivo para validar o update:
-
-```typescript
-   import { IsOptional } from 'class-validator';
-   
-   export class UpdateContaDto {
-     @IsOptional()
-     numero: number;
-   
-     @IsOptional()
-     titular: string;
-   
-     @IsOptional()
-     saldo: number;
-   
-     @IsOptional()
-     limite: number;
-   }
-```
-
-7. **Configurando o Model/Service**
+6. **Configurando o Model/Service**
 
 O arquivo do serviço é responsável pela interação e comunicação com o banco de dados MongoDB. Ele é usado para criar, recuperar, atualizar e excluir registros.
 ```typescript
@@ -154,19 +185,5 @@ export class ConstasService {
     return conta
   }
 }
-```
-
-8. **Atualizando o controller**
-   No controller onde temos as entradas para o POST e PUT vamos tipar com os DTO criados:
-   
-```typescript
-   @Post()
-   create(@Body() conta: CreateContaDto) {
-   return this.contasService.create(conta);
-   }
-   @Put(':id')
-   update(@Param('id') id: number, @Body() conta: UpdateContaDto) {
-   return this.contasService.update(id, conta);
-   }
 ```
    
