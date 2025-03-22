@@ -1,11 +1,11 @@
 1. Criar o Service e o Controller usando o Nest CLI
 Execute os comandos abaixo para gerar automaticamente os arquivos:
-```
+```bash
 nest g service auth
 nest g controller auth
 ```
 Instalação do jsonwebtoken
-```
+```bash
 npm install jsonwebtoken @types/jsonwebtoken
 ```
 Isso criará os arquivos auth.service.ts e auth.controller.ts dentro da pasta auth/.
@@ -13,7 +13,7 @@ Isso criará os arquivos auth.service.ts e auth.controller.ts dentro da pasta au
 2. Implementar o AuthService
 Edite o arquivo auth.service.ts para criar e validar tokens JWT:
 
-```
+```typescript
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { sign, verify } from 'jsonwebtoken';
 
@@ -38,7 +38,7 @@ export class AuthService {
 3. Implementar o AuthController
 Edite o arquivo auth.controller.ts para expor um endpoint que gere tokens:
 
-```
+```typescript
 import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
@@ -55,12 +55,12 @@ export class AuthController {
 ```
 
 4. Criar o Guard de Autenticação
-```
+```bash
 nest g guard guards/auth
 ```
 Edite o arquivo auth.guard.ts para validar o token JWT:
 
-```
+```typescript
 import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
 import { Request } from 'express';
 import { AuthService } from '../auth/auth.service';
@@ -93,7 +93,7 @@ export class AuthGuard implements CanActivate {
 ```
 5. Aplicar o Guard no Controller
 Agora, qualquer endpoint protegido exigirá um token JWT válido:
-```
+```typescript
 import { Controller, Get, UseGuards, Req } from '@nestjs/common';
 import { AuthGuard } from '../guards/auth.guard'; // importa o guard criado
 
@@ -108,13 +108,13 @@ export class UsersController {
 }
 ```
 6. Configurar a Chave Secreta
-No arquivo .env, adicione:
+Crie um arquivo .env na raiz do projeto, adicione:
 ```
 JWT_SECRET=seu_segredo_super_secreto
 ```
 E no main.ts, carregue as variáveis de ambiente:
 
-```
+```typescript
 import * as dotenv from 'dotenv';
 dotenv.config();
 ```
