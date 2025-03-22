@@ -34,7 +34,6 @@ export const CreateContaSchema = z.object({
   limite: z.number().nonnegative(),
 });
 
-export type CreateContaDto = z.infer<typeof CreateContaSchema>;
 export class CreateContaZodDto extends createZodDto(CreateContaSchema) {}
 ```
 2.2. 📌 Criando o update-conta.dto.ts
@@ -51,7 +50,6 @@ export const UpdateContaSchema = z.object({
   limite: z.number().nonnegative().optional(),
 });
 
-export type UpdateContaDto = z.infer<typeof UpdateContaSchema>;
 export class UpdateContaZodDto extends createZodDto(UpdateContaSchema) {}
 ```
 3.  Utilizar os DTOs no Controller
