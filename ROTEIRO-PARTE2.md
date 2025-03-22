@@ -7,7 +7,7 @@
 Execute o seguinte comando para instalar as dependências necessárias:
 
 ```bash
-npm install zod @nestjs/zod
+npm install zod nestjs/zod
 ```
 
 2. Criar a Pasta dto/, dentro do módulo, e Adicionar os Schemas com Zod
