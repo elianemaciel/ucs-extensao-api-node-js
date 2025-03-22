@@ -20,7 +20,7 @@ import { sign, verify } from 'jsonwebtoken';
 
 @Injectable()
 export class AuthService {
-  private readonly jwtSecret = process.env.JWT_SECRET;
+  private readonly jwtSecret = '<seu_segredo_super_secreto>';
 
   generateToken(userId: string): string {
     return sign({ sub: userId }, this.jwtSecret, { expiresIn: '1h' });
@@ -108,7 +108,7 @@ export class UsersController {
   }
 }
 ```
-6. Configurar a Chave Secreta
+<!--6. Configurar a Chave Secreta
 Crie um arquivo .env na raiz do projeto, adicione:
 ```
 JWT_SECRET=seu_segredo_super_secreto
@@ -118,4 +118,4 @@ E no main.ts, carregue as variáveis de ambiente:
 ```typescript
 import * as dotenv from 'dotenv';
 dotenv.config();
-```
+```-->
