@@ -198,7 +198,7 @@ npm i --save @nestjs/config
 
 2. Importando o módulo:
 
-```
+```typescript
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -222,7 +222,7 @@ MONGODB_URL=
 
 4. Vamos ajustar a configuração do módulo do mongoDB:
 
-```
+```typescript
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
