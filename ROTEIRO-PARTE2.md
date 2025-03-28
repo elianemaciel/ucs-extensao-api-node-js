@@ -111,7 +111,7 @@ Substitua a URL com a url de conexão adquirida no MongoDB Atlas.
   Vamos criar uma pasta chamada `schemas`, e crie um arquivo `contas.schema.ts`.
 
    ```typescript
-    import { Prop, Schema, SchemaFactory } from 'mongoose';
+    import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose"
 
     @Schema({ collection: 'accounts' })
     export class Accounts {
