@@ -187,4 +187,66 @@ export class AccountsService {
 }
 
 ```
+
+### Parte 3
+
+1. Instalação
+
+```
+npm i --save @nestjs/config
+```
+
+2. Importando o módulo:
+
+```
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { AccountsModule } from './accounts/accounts.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
+
+@Module({
+  imports: [ConfigModule.forRoot(), AccountsModule, MongooseModule.forRoot('mongodb://localhost/')],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
+```
+
+3. Agora, podemos criar um arquivo `.env` com as variàveis de ambiente:
+
+```
+MONGODB_URL=
+```
+
+4. Vamos ajustar a configuração do módulo do mongoDB:
+
+```
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { AccountsModule } from './accounts/accounts.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+
+@Module({
+  imports: [ConfigModule.forRoot(),
+    AccountsModule,
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      connectionName: 'test',
+      useFactory: async (config: ConfigService) => ({
+       uri: config.get('MONGODB_URL'),
+       useNewUrlParser: true,
+       useUnifiedTopology: true,
+      }),
+      inject: [ConfigService],
+  })],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
+```
+
    
