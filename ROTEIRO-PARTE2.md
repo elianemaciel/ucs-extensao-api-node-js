@@ -149,37 +149,42 @@ O arquivo do serviço é responsável pela interação e comunicação com o ban
 ```typescript
 ...
 
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Accounts } from 'src/schemas/accounts.schemas';
 import { Model } from 'mongoose';
-import { CreateContaDto } from './dto/create-conta-dto';
-import { UpdateContaDto } from './dto/update-user-dto';
+import { CreateAccountDto } from './dto/create-account.dto'
+import { UpdateAccountDto } from './dto/update-account.dto'
 
 @Injectable()
-export class ConstasService {
-  constructor(@InjectModel(Contas.name) private contaModel: Model<Contas>) {}
-  create(conta: CreateContaDto)  {
-    const createdConta = new this.contaModel(conta);
-    return createdConta.save();
-  }
-
-  findAll()  {
-    return this.contaModel.find().exec();
-  }
-
-  findOne(numero: number)  {
-    return this.contaModel.findOne({ numero: numero }).exec();
-  }
-
-  async update(id: number, conta: UpdateContaDto)  {
-    const conta = await this.contaModel.findOneAndUpdate({ numero: numero }, conta).exec();
-    return conta
-  }
-
-  async remove(id: number)  {
-    const conta = await this.contaModel.findOneAndDelete({ numero: numero }).exec();
-    return conta
-  }
+export class AccountsService {
+    constructor(
+        @InjectModel(Accounts.name) private contaModel: Model<Accounts>
+    ) {}
+  
+    create(conta: CreateAccountDto)  {
+        const createdConta = new this.contaModel(conta);
+        return createdConta.save();
+      }
+    
+      findAll()  {
+        return this.contaModel.find().exec();
+      }
+    
+      findOne(numero: number)  {
+        return this.contaModel.findOne({ numero: numero }).exec();
+      }
+    
+      async update(id: number, account: UpdateAccountDto)  {
+        const conta = await this.contaModel.findOneAndUpdate({ number: id }, account).exec();
+        return conta
+      }
+    
+      async remove(id: number)  {
+        const conta = await this.contaModel.findOneAndDelete({ number: id }).exec();
+        return conta
+      }
 }
+
 ```
    
