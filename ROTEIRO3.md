@@ -33,27 +33,16 @@ No arquivo `main.ts`
 [http://localhost:3000/api/docs](http://localhost:3000/api/docs)
 
 
-### Exemplo de documentação (Post /api)
-No Swagger, precisamos criar um Dto para mostrar o corpo que esperamos do usuário.
+### No controller:
+```
+@ApiTags('Accounts')
+@Controller('accounts')
+export class AccountsController {
+  constructor(private readonly accountsService: AccountsService) {}
 
-```typescript
-  import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-
-  export class CreateDemoDto {
-    @ApiPropertyOptional({
-      type: Number,
-      description: 'This is an optional property',
-    })
-    id: number;
-    @ApiProperty({
-      type: String,
-      description: 'This is a required property',
-    })
-    name: string;
-    @ApiProperty({
-      type: String,
-      description: 'This is a required property',
-    })
-    abbreviation: string;
+  @Post()
+  @ApiBody({ type: CreateAccountDto }) 
+  create(@Body() accountDto: CreateAccountDto) {
+    return this.accountsService.create(accountDto);
   }
 ```
