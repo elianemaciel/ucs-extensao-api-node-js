@@ -131,10 +131,10 @@ Substitua a URL com a url de conexão adquirida no MongoDB Atlas.
 
 ```typescript
    import { MongooseModule } from '@nestjs/mongoose';
-   import { Contas, AccountsSchema } from './schemas/contas.schema';
+   import { Accounts, AccountsSchema } from 'src/schemas/accounts.schemas';
    ...
    @Module({
-     imports: [MongooseModule.forFeature([{ name: Contas.name, schema: AccountsSchema }])],
+     imports: [MongooseModule.forFeature([{ name: Accounts.name, schema: AccountsSchema }])],
      controllers: [ContasController],
      providers: [ContasService],
      exports: [ContasModule]
@@ -150,8 +150,8 @@ O arquivo do serviço é responsável pela interação e comunicação com o ban
 ...
 
 import { InjectModel } from '@nestjs/mongoose';
+import { Accounts } from 'src/schemas/accounts.schemas';
 import { Model } from 'mongoose';
-import { Contas } from './schemas/contas.schema';
 import { CreateContaDto } from './dto/create-conta-dto';
 import { UpdateContaDto } from './dto/update-user-dto';
 
