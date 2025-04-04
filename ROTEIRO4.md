@@ -7,7 +7,7 @@ Antes de fazer o deploy, precisamos configurar o Vercel para rodar nossa aplica�
 - 📄 Criar o arquivo vercel.json
 Na raiz do projeto, crie um arquivo chamado vercel.json com o seguinte conteúdo:
 
-``json
+```json
 { 
   "version": 2, 
   "builds": [ 
