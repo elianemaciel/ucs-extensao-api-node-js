@@ -32,6 +32,9 @@ No arquivo `main.ts`
 
 [http://localhost:3000/api/docs](http://localhost:3000/api/docs)
 
+![image](https://github.com/user-attachments/assets/60d0c369-894b-40d0-a9c9-f903e8d73bf4)
+
+
 
 ### No controller:
 ```
