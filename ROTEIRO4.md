@@ -1,6 +1,8 @@
 # 📌 Deploy de uma aplicação NestJS na Vercel
 Este tutorial guiará você no processo de deploy de uma aplicação NestJS usando a Vercel e como automatizar esse processo utilizando GitHub Actions.
 
+## Cliar conta no vercel:
+[https://vercel.com/login](https://vercel.com/login)
 ## 🚀 1. Criando o arquivo de configuração vercel.json
 Antes de fazer o deploy, precisamos configurar o Vercel para rodar nossa aplicação corretamente.
 
