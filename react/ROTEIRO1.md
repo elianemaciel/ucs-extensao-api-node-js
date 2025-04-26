@@ -21,6 +21,9 @@ Turbinando o vscode
 
 ```bash
 npx create-react-app <nome-do-projeto> --template typescript
+```
+```
+cd nome-do-projeto
 npm install --save typescript
 npm install --save @types/node
 npm install --save @types/react
