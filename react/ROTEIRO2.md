@@ -47,8 +47,8 @@ export default LogoComponent;
 const HeaderComponent = () => {
   return (
     <header className="topo">
-      <Logo />
-      <Navegacao />
+      <LogoComponent />
+      <NavComponent />
     </header>
   );
 }
