@@ -46,10 +46,10 @@ export default LogoComponent;
 // imports
 const HeaderComponent = () => {
   return (
-	    <header className="topo">
-	      <Logo />
-	      <Navegacao />
-	    </header>
+    <header className="topo">
+      <Logo />
+      <Navegacao />
+    </header>
   );
 }
 
@@ -65,9 +65,8 @@ import React from "react";
 const HomePage = () => {
   return (
     <main>
-	    <HeaderComponent />
-	    
-	    ... outros componentess
+      <HeaderComponent />
+      ... outros componentess
     </main>
   );
 }
@@ -86,16 +85,16 @@ const MainComponent = () => {
   return (
     <main className="principal">
       <div className="App">
-	      <ProfileComponent
-		      name="Katherine Johnson"
-		      imageUrl="https://i.imgur.com/MK3eW3Am.jpg" />
-	      <ProfileComponent
-		      name="Dorothy Vaughan"
-			    imageUrl="https://i.imgur.com/7vQD0fPs.jpg" />
-	      <ProfileComponent
-		      name="Mary Jackson"
-		      imageUrl="https://i.imgur.com/Z9SnKhp.jpg" />
-	    </div>
+        <ProfileComponent
+          name="Katherine Johnson"
+          imageUrl="https://i.imgur.com/MK3eW3Am.jpg" />
+        <ProfileComponent
+          name="Dorothy Vaughan"
+          imageUrl="https://i.imgur.com/7vQD0fPs.jpg" />
+        <ProfileComponent
+          name="Mary Jackson"
+          imageUrl="https://i.imgur.com/Z9SnKhp.jpg" />
+      </div>
     </main>
   );
 };
@@ -112,9 +111,8 @@ import React from "react";
 const HomePage = () => {
   return (
     <main>
-	    <HeaderComponent />
-	    
-	    <MainComponent />
+      <HeaderComponent />
+      <MainComponent />
     </main>
   );
 }
