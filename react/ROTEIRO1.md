@@ -101,7 +101,7 @@ O React DevTools permite que você verifique as props e o estado (*state*) de se
 - Crie uma pasta dentro de `src/` com o nome `components` . Dentro dessa pasta crie um arquivo chamado `profile.component.tsx`
     
     ```tsx
-    const Profile = () => {
+    const ProfileComponent = () => {
       return (
         <img
           src="https://i.imgur.com/MK3eW3Am.jpg"
@@ -110,7 +110,7 @@ O React DevTools permite que você verifique as props e o estado (*state*) de se
       )
     }
     
-    export default Profile
+    export default ProfileComponent
     ```
     
 - Usando seu componente:
@@ -118,15 +118,15 @@ O React DevTools permite que você verifique as props e o estado (*state*) de se
     No arquivo `src/App.tsx`
     
     ```tsx
-    import Profile from './components/profile'
+    import ProfileComponent from './components/profile'
     import './App.css';
     
     function App() {
       return (
         <div className="App">
-    	    <Profile />
-          <Profile />
-          <Profile />
+    	    <ProfileComponent />
+          <ProfileComponent />
+          <ProfileComponent />
         </div>
       );
     }
@@ -143,7 +143,7 @@ O React DevTools permite que você verifique as props e o estado (*state*) de se
       imageUrl: string;
     }
     
-    const Profile = ({ name, imageUrl }: ProfileProps) => {
+    const ProfileComponent = ({ name, imageUrl }: ProfileProps) => {
       return (
         <div>
           <img src={imageUrl} alt={name} />
@@ -152,25 +152,25 @@ O React DevTools permite que você verifique as props e o estado (*state*) de se
       )
     }
     
-    export default Profile;
+    export default ProfileComponent;
     ```
     
     Agora, vamos modificar nosso componente App para usar este componente Profile com propriedades:
     
     ```tsx
-    import Profile from './components/profile'
+    import ProfileComponent from '../components/ProfileComponent/profile.component';
     import './App.css';
     
     function App() {
       return (
         <div className="App">
-          <Profile
+          <ProfileComponent
     	      name="Katherine Johnson"
     	      imageUrl="https://i.imgur.com/MK3eW3Am.jpg" />
-          <Profile
+          <ProfileComponent
     	      name="Dorothy Vaughan"
     	      imageUrl="https://i.imgur.com/7vQD0fPs.jpg" />
-          <Profile
+          <ProfileComponent
     	      name="Mary Jackson"
     	      imageUrl="https://i.imgur.com/Z9SnKhp.jpg" />
         </div>
