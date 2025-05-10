@@ -5,11 +5,11 @@
 
 ### Passo 1: Criando o Tipo do Livro
 
-1. Dentro da pasta `src`, crie uma pasta de nome `interfaces`, dentro dela crie o arquivo `book.interface.ts` para definir o tipo do livro.
+1. Dentro da pasta `src`, crie uma pasta de nome `interfaces`, dentro dela crie o arquivo `IBook.interface.ts` para definir o tipo do livro.
     
     ```tsx
     
-    export interface Book {
+    export interface IBook {
         id: number;
         title: string;
         author: string;
