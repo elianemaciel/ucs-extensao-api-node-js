@@ -26,13 +26,13 @@
     
     ```tsx
     import React, { useState } from 'react';
-    import { Book } from '../interfaces/book.interface';
+    import { IBook } from '../interfaces/IBook.interface';
     
     interface BookFormProps {
         onAddBook: (book: Book) => void;
     }
     
-    const BookForm = ({ onAddBook }) => {
+    const BookForm = ({ onAddBook }: BookFormProps) => {
         const [title, setTitle] = useState('');
         const [author, setAuthor] = useState('');
         const [year, setYear] = useState<number | ''>('');
@@ -40,7 +40,7 @@
         const handleSubmit = (e: React.FormEvent) => {
             e.preventDefault();
             if (title && author && year) {
-                const newBook: Book = {
+                const newBook: IBook = {
                     id: Date.now(),
                     title,
                     author,
