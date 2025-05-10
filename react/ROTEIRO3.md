@@ -133,7 +133,17 @@
 
 ### Passo 5: Crie as routes para cada pagina
 
-
+```tsx
+ <React.StrictMode>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/books/create" element={<BookForm onAddBook={(book: IBook): void => {}} />} />
+        <Route path='/books/list' element={<BookList books={[]} />} />
+      </Routes>
+    </Router>
+  </React.StrictMode>
+```
     
 
 # Validação de Formulário com Hook Personalizado em React
