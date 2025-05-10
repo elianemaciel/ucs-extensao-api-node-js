@@ -153,13 +153,21 @@
 Crie um arquivo useForm.tsx dentro de uma pasta de nome hooks.
 
 ```jsx
-import { useState } from 'react';
+import { IBook } from '../interfaces/IBook.interface';
 
-function useForm(validate) {
-  const [errors, setErrors] = useState({});
+interface BookForm {
+    title: string
+    author: string
+    year: string
+}
+const useForm = () => {
 
-  function validate(values) {
-    const errors = {};
+  function validate(values: IBook) {
+    const errors: BookForm = {
+        title: '',
+        author: '',
+        year: ''
+    };
     if (!values.title) {
       errors.title = "O title é obrigatório";
     }
@@ -173,6 +181,8 @@ function useForm(validate) {
  }
   return { validate };
 }
+
+export default useForm
 ```
 ## Integração com Tailwind
 
