@@ -102,10 +102,11 @@
     ```tsx
     
     import React from 'react';
-    import { Book } from './interfaces/book.interface';
+    import { IBook } from '../interfaces/IBook.interface';
+
     
     interface BookListProps {
-        books: Book[];
+        books: IBook[];
     }
     
     const BookList = ({ books }: BookListProps) => {
