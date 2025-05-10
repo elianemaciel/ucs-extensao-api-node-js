@@ -189,4 +189,12 @@ function useForm(validate) {
   return { validate };
 }
 ```
+## Integração com Tailwind
 
+```
+npm install tailwindcss @tailwindcss/cli
+```
+- Add the @import "tailwindcss"; import to your main CSS file.
+```npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch```
+- Add your compiled CSS file to the <head> and start using Tailwind’s utility classes to style your content.
+```npx flowbite-react@latest init```
