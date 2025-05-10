@@ -133,34 +133,7 @@
 
 ### Passo 5: Crie as routes para cada pagina
 
-1. Altere o componente `Principal.tsx` criado no último roteiro. Importe os componentes `BookForm` e `BookList` e implemente a lógica de adicionar e listar os livros.
-    
-    ```tsx
-    
-    import React, { useState } from 'react';
-    import BookForm from './BookForm';
-    import BookList from './BookList';
-    import { Book } from './types';
-    
-    const Principal = () => {
-        const [books, setBooks] = useState<Book[]>([]);
-    
-        const addBook = (book: Book) => {
-            setBooks((prevBooks) => [...prevBooks, book]);
-        };
-    
-        return (
-            <div className="App">
-                <h1>Cadastro de Livros</h1>
-                <BookForm onAddBook={addBook} />
-                <BookList books={books} />
-            </div>
-        );
-    };
-    
-    export default Principal;
-    
-    ```
+
     
 
 # Validação de Formulário com Hook Personalizado em React
