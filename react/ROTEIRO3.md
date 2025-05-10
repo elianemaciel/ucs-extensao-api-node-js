@@ -160,13 +160,14 @@ function useForm(validate) {
 
   function validate(values) {
     const errors = {};
-    if (!values.name) {
-      errors.name = "O nome é obrigatório";
+    if (!values.title) {
+      errors.title = "O title é obrigatório";
     }
-    if (!values.email) {
-      errors.email = "O e-mail é obrigatório";
-    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-      errors.email = "E-mail inválido";
+    if (!values.author) {
+      errors.author = "O autor é obrigatório";
+    }
+    if (!values.year) {
+      errors.year = "O ano é obrigatório";
     }
     return errors;
  }
