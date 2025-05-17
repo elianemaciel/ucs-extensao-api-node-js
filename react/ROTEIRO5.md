@@ -161,7 +161,7 @@ reportWebVitals();
 # Salvando dados no firestore
 No arquivo de BookForm.page.tsx
 
-```
+```tsx
 import React, { useState } from 'react';
 import { IBook } from '../interfaces/IBook.interface'
 import useForm from '../hooks/useForm';
@@ -211,10 +211,6 @@ const BookForm = ({ onAddBook }: BookFormProps) => {
 
    ...
 ```
-# Buscando dados no Firestore
 
-```
-
-```
 
 
