@@ -128,7 +128,18 @@ import BookForm from './pages/BookForm.page';
 import { IBook } from './interfaces/IBook.interface';
 import BookList from './pages/BookList.page';
 
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: 'SUA_API_KEY',
+  authDomain: 'SEU_AUTH_DOMAIN',
+  projectId: 'SEU_PROJECT_ID',
+  storageBucket: 'SEU_STORAGE_BUCKET',
+  messagingSenderId: 'SEU_MESSAGING_SENDER_ID',
+  appId: 'SEU_APP_ID'
+};
 export const app = initializeApp(firebaseConfig) ;
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -147,4 +158,63 @@ root.render(
 
 reportWebVitals();
 ```
+# Salvando dados no firestore
+No arquivo de BookForm.page.tsx
+
+```
+import React, { useState } from 'react';
+import { IBook } from '../interfaces/IBook.interface'
+import useForm from '../hooks/useForm';
+import { doc, setDoc } from "firebase/firestore"; 
+
+// Importar o app do index
+const db = getFirestore(app);
+
+interface BookFormProps {
+    onAddBook: (book: IBook) => void;
+}
+
+const BookForm = ({ onAddBook }: BookFormProps) => {
+    const [title, setTitle] = useState<string>('');
+    const [author, setAuthor] = useState<string>('');
+    const [year, setYear] = useState<number>();
+
+    const { validate } = useForm();
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        const { errors, hasErrors} = validate({
+            id: 0,
+            title,
+            author,
+            year
+        })
+        
+        if (!hasErrors) {
+            const newBook: IBook = {
+                id: Date.now(),
+                title,
+                author,
+                year: Number(year),
+            };
+            await setDoc(doc(db, "books", id), {
+		  title,
+		  author,
+		  year
+		});
+            onAddBook(newBook);
+            setTitle('');
+            setAuthor('');
+            setYear(undefined);
+        }
+    };
+
+   ...
+```
+# Buscando dados no Firestore
+
+```
+
+```
+
 
