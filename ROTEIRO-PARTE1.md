@@ -61,7 +61,7 @@ Vamos criar uma aplicação CRUD para gerenciar um recurso chamado "Banco". Nele
        return this.accountsService.create(conta);
      }
 
-     @Get()
+     @Get('all')
      findAll() {
        return this.accountsService.findAll();
      }
