@@ -19,18 +19,18 @@ Vamos criar uma aplicação CRUD para gerenciar um recurso chamado "Banco". Nele
 1. **Crie um módulo, controlador e serviço para Conta:**
 
    ```bash
-   nest generate module contas
-   nest generate controller contas
-   nest generate service contas
+   nest generate module accounts
+   nest generate controller accounts
+   nest generate service accounts
    ```
 
-3. **Configure o serviço de contas (`contas/contas.service.ts`):**
+3. **Configure o serviço de contas (`accounts/accounts.service.ts`):**
 
    ```typescript
    import { Injectable } from '@nestjs/common';
 
    @Injectable()
-   export class ContasService {
+   export class AccountsService {
      constructor(
      ) {}
 
@@ -46,56 +46,41 @@ Vamos criar uma aplicação CRUD para gerenciar um recurso chamado "Banco". Nele
    }
    ```
 
-4. **Configure o controlador de contas (`contas/contas.controller.ts`):**
+4. **Configure o controlador de contas (`accounts/accounts.controller.ts`):**
 
    ```typescript
    import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
-   import { ContasService } from './contas.service';
+   import { AccountsService } from './accounts.service';
 
-   @Controller('contas')
-   export class ContasController {
-     constructor(private readonly contasService: ContasService) {}
+   @Controller('accounts')
+   export class AccountsController {
+     constructor(private readonly accountsService: AccountsService) {}
 
      @Post()
      create(@Body() conta: any) {
-       return this.contasService.create(conta);
+       return this.accountsService.create(conta);
      }
 
      @Get()
      findAll() {
-       return this.contasService.findAll();
+       return this.accountsService.findAll();
      }
 
      @Get(':id')
      findOne(@Param('id') id: number) {
-       return this.contasService.findOne(id);
+       return this.accountsService.findOne(id);
      }
 
      @Put(':id')
      update(@Param('id') id: number, @Body() conta: any) {
-       return this.contasService.update(id, conta);
+       return this.accountsService.update(id, conta);
      }
 
      @Delete(':id')
      remove(@Param('id') id: number) {
-       return this.contasService.remove(id);
+       return this.accountsService.remove(id);
      }
    }
-   ```
-
-5. **Atualize o módulo de contas (`contas/contas.module.ts`):**
-
-   ```typescript
-   import { Module } from '@nestjs/common';
-   import { ContasController } from './contas.controller';
-   import { ContasService } from './contas.service';
-
-   @Module({
-     imports: [],
-     controllers: [ContasController],
-     providers: [ContasService],
-   })
-   export class ContasModule {}
    ```
 
 ### 4. Testando o CRUD
@@ -110,11 +95,11 @@ Vamos criar uma aplicação CRUD para gerenciar um recurso chamado "Banco". Nele
 
    Use ferramentas como Postman ou cURL para testar os endpoints:
 
-   - **POST** `/contas` para criar uma nova conta.
-   - **GET** `/contas` para listar todas as contas.
-   - **GET** `/contas/:id` para buscar um conta pelo ID.
-   - **PUT** `/contas/:id` para atualizar um conta pelo ID.
-   - **DELETE** `/contas/:id` para remover um conta pelo ID.
+   - **POST** `/accounts` para criar uma nova conta.
+   - **GET** `/accounts` para listar todas as contas.
+   - **GET** `/accounts/:id` para buscar um conta pelo ID.
+   - **PUT** `/accounts/:id` para atualizar um conta pelo ID.
+   - **DELETE** `/accounts/:id` para remover um conta pelo ID.
 
 ### 5. Criando o módulo clientes:
 
