@@ -231,18 +231,16 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
-  imports: [ConfigModule.forRoot(),
-    AccountsModule,
+  imports: [
+    ConfigModule.forRoot(),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      connectionName: 'test',
       useFactory: async (config: ConfigService) => ({
-       uri: config.get('MONGODB_URL'),
-       useNewUrlParser: true,
-       useUnifiedTopology: true,
+        uri: config.get('MONGODB_URL'),
       }),
       inject: [ConfigService],
-  })],
+    }),
+    AccountsModule],
   controllers: [AppController],
   providers: [AppService],
 })
