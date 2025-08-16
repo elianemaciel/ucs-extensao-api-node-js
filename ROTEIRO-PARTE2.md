@@ -158,33 +158,33 @@ import { UpdateAccountDto } from './dto/update-account.dto'
 
 @Injectable()
 export class AccountsService {
-    constructor(
-        @InjectModel(Accounts.name) private contaModel: Model<Accounts>
-    ) {}
+
+  constructor(@InjectModel(Accounts.name) private accountModel: Model<Accounts>) {}
   
-    create(conta: CreateAccountDto)  {
-        const createdConta = new this.contaModel(conta);
-        return createdConta.save();
-      }
-    
-      findAll()  {
-        return this.contaModel.find().exec();
-      }
-    
-      findOne(numero: number)  {
-        return this.contaModel.findOne({ numero: numero }).exec();
-      }
-    
-      async update(id: number, account: UpdateAccountDto)  {
-        const conta = await this.contaModel.findOneAndUpdate({ number: id }, account).exec();
-        return conta
-      }
-    
-      async remove(id: number)  {
-        const conta = await this.contaModel.findOneAndDelete({ number: id }).exec();
-        return conta
-      }
+  create(conta: CreateAccountDto)  {
+    const createdConta = new this.accountModel(conta);
+    return createdConta.save();
+  }
+
+  findAll()  {
+    return this.accountModel.find().exec();
+  }
+
+  findOne(accountNumber: number)  {
+    return this.accountModel.findOne({ number: accountNumber }).exec();
+  }
+
+  async update(accountNumber: number, account: UpdateAccountDto)  {
+    const accountResult = await this.accountModel.findOneAndUpdate({ number: accountNumber }, account).exec();
+    return accountResult
+  }
+  
+  async remove(accountNumber: number)  {
+    const conta = await this.accountModel.findOneAndDelete({ number: accountNumber }).exec();
+    return conta
+  }
 }
+
 
 ```
 
