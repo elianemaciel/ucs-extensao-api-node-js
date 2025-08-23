@@ -4,27 +4,27 @@
 - Node.js e npm instalados.
 - Redis instalado (local ou em Docker).
 - Comando para rodar no Docker:
-```
+```bash
 docker run --name redis -p 6379:6379 -d redis
-``
+```
 
 ## Instalação das Dependências
 
 Pacotes necessários:
 
-``
+```bash
 npm install ioredis @nestjs/microservices
 ```
 
 
 ## Configuração do Redis no NestJS
 
-4.1. Criar um módulo RedisModule
+### Criar um módulo RedisModule
 
-```
+```bash
 nest g module redis
 ```
-``
+```
 import { Module, Global } from '@nestjs/common';
 import { createClient } from 'redis';
 
@@ -47,10 +47,12 @@ export class RedisModule {}
 
 ## Publicação de Mensagens
 
-## Criar um PublisherService
+### Criar um PublisherService
 
-```
+```bash
 nest g service publisher
+```
+
 ```
 import { Injectable, Inject } from '@nestjs/common';
 import { RedisClientType } from 'redis';
@@ -66,8 +68,15 @@ export class PublisherService {
     console.log(`Mensagem publicada no canal ${channel}: ${message}`);
   }
 }
+```
 
-5.2. Criar um Controller para testar
+### Criar um Controller para testar
+
+```bash
+nest g controller messages
+```
+
+```
 import { Controller, Post, Body } from '@nestjs/common';
 import { PublisherService } from './publisher.service';
 
@@ -80,9 +89,16 @@ export class MessagesController {
     return this.publisherService.publish(body.channel, body.message);
   }
 }
+```
 
-6. Processamento (Subscriber)
-6.1. Criar um SubscriberService
+## Processamento (Subscriber)
+### Criar um SubscriberService
+
+```bash
+nest g service publisher
+```
+
+```
 import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
 import { RedisClientType } from 'redis';
 
@@ -100,21 +116,8 @@ export class SubscriberService implements OnModuleInit {
     });
   }
 }
+``
 
-7. Testando o Fluxo
-
-Subir o projeto:
-
-npm run start:dev
-
-
-Enviar mensagem via Postman/Insomnia:
-
-POST http://localhost:3000/messages
-Body: {
-  "channel": "notifications",
-  "message": "Olá do Redis!"
-}
 
 
 Ver no terminal do NestJS:
