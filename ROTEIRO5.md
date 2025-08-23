@@ -95,7 +95,7 @@ export class MessagesController {
 ### Criar um SubscriberService
 
 ```bash
-nest g service publisher
+nest g service subscriber
 ```
 
 ```typescript
@@ -116,4 +116,4 @@ export class SubscriberService implements OnModuleInit {
     });
   }
 }
-``
+```
