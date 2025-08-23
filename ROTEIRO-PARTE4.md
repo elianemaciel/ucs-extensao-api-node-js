@@ -54,7 +54,8 @@ export class AccountsController {
   constructor(private readonly accountsService: AccountsService) {}
 
   @Post()
-  @ApiBody({ type: CreateAccountDto }) 
+  @ApiBody({ type: CreateAccountDto })
+  @ApiBearerAuth('access-token')
   create(@Body() accountDto: CreateAccountDto) {
     return this.accountsService.create(accountDto);
   }
