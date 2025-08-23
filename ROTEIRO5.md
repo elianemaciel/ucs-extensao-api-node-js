@@ -24,7 +24,7 @@ npm install ioredis @nestjs/microservices
 ```bash
 nest g module redis
 ```
-```
+```typescript
 import { Module, Global } from '@nestjs/common';
 import { createClient } from 'redis';
 
@@ -53,7 +53,7 @@ export class RedisModule {}
 nest g service publisher
 ```
 
-```
+```typescript
 import { Injectable, Inject } from '@nestjs/common';
 import { RedisClientType } from 'redis';
 
@@ -76,7 +76,7 @@ export class PublisherService {
 nest g controller messages
 ```
 
-```
+```typescript
 import { Controller, Post, Body } from '@nestjs/common';
 import { PublisherService } from './publisher.service';
 
@@ -98,7 +98,7 @@ export class MessagesController {
 nest g service publisher
 ```
 
-```
+```typescript
 import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
 import { RedisClientType } from 'redis';
 
@@ -117,9 +117,3 @@ export class SubscriberService implements OnModuleInit {
   }
 }
 ``
-
-
-
-Ver no terminal do NestJS:
-
-Mensagem recebida em notifications: Olá do Redis!
