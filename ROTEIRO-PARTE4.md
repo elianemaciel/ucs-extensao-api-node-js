@@ -18,10 +18,20 @@ No arquivo `main.ts`
 
   // Swagger Options
   const options = new DocumentBuilder()
-    .addBearerAuth()
-    .setTitle('Nest-js Swagger Example API')
-    .setDescription('Swagger Example API API description')
+    .setTitle('Exemplo API - Curso de Extenção')
+    .setDescription('Documentação exemplo API')
     .setVersion('1.0')
+    .addBearerAuth(
+      {
+        description: `[just text field] Please enter token in following format: Bearer <JWT>`,
+        name: 'Authorization',
+        bearerFormat: 'Bearer', 
+        scheme: 'Bearer',
+        type: 'http',
+        in: 'Header',
+      },
+      'access-token',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, options);
   // Swagger path: http://localhost:3200/api/docs
